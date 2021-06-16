@@ -26,11 +26,13 @@ jobs:
           sh generate_sqlite_db.sh
       - name: Set up Cloud Run
         uses: google-github-actions/setup-gcloud@master
+        if: github.ref == 'refs/heads/main'
         with:
           version: "345.0.0"
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
       - name: Deploy to Cloud Run
+        if: github.ref == 'refs/heads/main'
         run: |-
           gcloud config set run/region asia-south1
           gcloud config set project datasette-publisher
