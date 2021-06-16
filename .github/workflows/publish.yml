@@ -26,19 +26,19 @@ jobs:
           sh generate_sqlite_db.sh
       - name: Set up Cloud Run
         uses: google-github-actions/setup-gcloud@master
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         with:
           version: "345.0.0"
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
       - name: Deploy to Cloud Run
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         run: |-
           gcloud config set run/region asia-south1
           gcloud config set project datasette-publisher
           datasette publish cloudrun app.db \
             -m metadata.json \
             --service datasette-service \
-            --branch main \
+            --branch master \
             --memory 2Gi \
             --extra-options="--config facet_time_limit_ms:3000 --config sql_time_limit_ms:3000"
