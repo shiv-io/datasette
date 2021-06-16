@@ -23,7 +23,7 @@ jobs:
           pip install -r requirements.txt
       - name: Generate app.db
         run: |
-          sh loop.sh
+          sh generate_sqlite_db.sh
       - name: Set up Cloud Run
         uses: google-github-actions/setup-gcloud@master
         with:
