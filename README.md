@@ -1,3 +1,7 @@
+The data can be viewed [here](https://datasette-service-k3pyevlkcq-el.a.run.app/).
+
+[![Datasette build](https://github.com/shiv-io/Kansas-City-Housing-Data/actions/workflows/publish.yml/badge.svg)](https://github.com/shiv-io/Kansas-City-Housing-Data/actions/workflows/publish.yml)
+
 ## Getting Started
 
 ```
