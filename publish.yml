@@ -1,0 +1,40 @@
+name: Fetch latest data and deploy with Datasette
+
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - created
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository }}
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Set up Cloud Run
+        if: github.event_name == 'workflow_dispatch'
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          version: "345.0.0"
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+      - name: Deploy to Cloud Run
+        if: github.event_name == 'workflow_dispatch'
+        run: |-
+          gcloud config set run/region asia-south1
+          gcloud config set project datasette-publisher
+          datasette publish cloudrun app.db \
+            --service datasette-service \
+            --branch main \
+            --memory 2Gi \
+            --extra-options="--config facet_time_limit_ms:3000 --config sql_time_limit_ms:3000"
