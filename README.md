@@ -6,6 +6,10 @@ The project is deployed on Google Cloud Run and is available [here](https://data
 
 [![Datasette build](https://github.com/shiv-io/Kansas-City-Housing-Data/actions/workflows/publish.yml/badge.svg)](https://github.com/shiv-io/Kansas-City-Housing-Data/actions/workflows/publish.yml)
 
+## Attribution
+
+The [GitHub Action workflow](./.github/workflows/publish.yml) that deploys the Datasette instance is adapted from [simonw/covid-19-datasette](https://github.com/simonw/covid-19-datasette).
+
 # Getting Started
 
 ### Install dependencies
