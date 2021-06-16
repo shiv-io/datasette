@@ -1,35 +1,37 @@
-The data can be viewed [here](https://datasette-service-k3pyevlkcq-el.a.run.app/).
+# About
+
+This project uses GitHub Actions to deploy a [datasette](https://datasette.io) website that comes with a UI for exploring data and a JSON API. The underlying data can be found in the `data/` directory.
+
+The project is deployed on Google Cloud Run and is available [here](https://datasette-service-k3pyevlkcq-el.a.run.app/).
 
 [![Datasette build](https://github.com/shiv-io/Kansas-City-Housing-Data/actions/workflows/publish.yml/badge.svg)](https://github.com/shiv-io/Kansas-City-Housing-Data/actions/workflows/publish.yml)
 
-## Getting Started
+# Getting Started
+
+### Install dependencies
 
 ```
 pip install datasette
 pip install sqlite-utils
 ```
 
-Create a db and import CSV:
+### Create a sqlite database and import CSV
 
 ```
 sqlite-utils insert app.db house_sales kc_house_data.csv --sniff
 ```
 
-Publish locally:
+### Publish locally
 
 ```
 datasette serve
 ```
 
-To publish to Google Cloud, we'll need to [install GCloud SDK](https://cloud.google.com/sdk/docs/downloads-versioned-archives). 
+### Publish to Google Cloud
 
-Install GCloud SDK:
+To publish to Google Cloud, we'll need to [install GCloud SDK](https://cloud.google.com/sdk/docs/downloads-versioned-archives). After installation and setup, follow the instructions below.
 
-```
-./google-cloud-sdk/install.sh
-```
-
-Create GCloud project:
+Create Google Cloud project:
 
 ```
 gcloud projects create datasette-publisher
