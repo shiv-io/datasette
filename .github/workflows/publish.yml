@@ -34,6 +34,7 @@ jobs:
           gcloud config set run/region asia-south1
           gcloud config set project datasette-publisher
           datasette publish cloudrun app.db \
+            -m metadata.json \
             --service datasette-service \
             --branch main \
             --memory 2Gi \
