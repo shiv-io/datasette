@@ -3,6 +3,7 @@
 # Delete existing app.db
 rm -f app.db
 
+cd data
 # Loop through CSVs in directory
 for filename in *.csv; do
     # Table name is the file name without the extension
@@ -10,5 +11,5 @@ for filename in *.csv; do
     
     # Insert CSV into app.db
     echo "Inserting $filename into app.db as table $TABLENAME"
-    sqlite-utils insert app.db $TABLENAME $filename --sniff
+    sqlite-utils insert ../app.db $TABLENAME $filename --sniff
 done
