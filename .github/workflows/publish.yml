@@ -5,6 +5,7 @@ on:
   release:
     types:
       - created
+  repository_dispatch:
 jobs:
   scheduled:
     runs-on: ubuntu-latest
